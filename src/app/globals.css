@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0A1628;
+  --color-navy: #0A1628;
+  --color-charcoal: #1E2A3A;
+  --color-gold: #C9A84C;
+  --color-gold-hover: #B5933C;
+  --color-accent: #C9A84C;
+  
+  --font-serif: var(--font-cormorant), serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-label: var(--font-montserrat), sans-serif;
+
+  --animate-infinite-scroll: infinite-scroll 40s linear infinite;
+  --animate-infinite-scroll-reverse: infinite-scroll-reverse 40s linear infinite;
+  
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes infinite-scroll-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #2d3748;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a84c;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0a1628;
+}
+
+/* Smooth Scrolling styling for Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis-stopped {
+  overflow: hidden;
+}
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Glassmorphism Classes */
+.glass-nav {
+  background: rgba(10, 22, 40, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.glass-card-dark {
+  background: rgba(30, 42, 58, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Utilities for editorial layouts */
+.text-stroke-gold {
+  -webkit-text-stroke: 1px rgba(201, 168, 76, 0.4);
+  color: transparent;
+}
+
+/* Shimmer Skeleton Loader */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
