@@ -6,15 +6,17 @@ import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 import { projectsData } from "@/data/projects";
 
-// Select 4 premium featured projects
-const featuredProjects = projectsData.filter((p) =>
-  [
-    "32-pinewood-drive",
-    "7-plumeria-drive",
-    "ba-swadesha",
-    "the-4th-axis-by-lifecraft",
-  ].includes(p.slug)
-);
+// Select premium featured projects with ongoing projects on top, completed later
+const featuredProjects = projectsData
+  .filter((p) =>
+    [
+      "the-4th-axis-by-lifecraft",
+      "shaligram-sky",
+      "32-pinewood-drive",
+      "7-plumeria-drive",
+    ].includes(p.slug)
+  )
+  .sort((a, b) => (a.status === "ongoing" ? -1 : b.status === "ongoing" ? 1 : 0));
 
 export default function FeaturedProjects() {
   return (

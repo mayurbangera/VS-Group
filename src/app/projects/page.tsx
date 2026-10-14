@@ -9,6 +9,13 @@ export const metadata = {
 };
 
 export default function ProjectsPage() {
+  // Display ongoing projects on top, completed projects later
+  const sortedProjects = [...projectsData].sort((a, b) => {
+    if (a.status === "ongoing" && b.status !== "ongoing") return -1;
+    if (a.status !== "ongoing" && b.status === "ongoing") return 1;
+    return 0;
+  });
+
   return (
     <div className="pt-24 min-h-screen bg-gray-50/30">
       {/* Hero Header */}
@@ -34,13 +41,13 @@ export default function ProjectsPage() {
           {/* Summary Count */}
           <div className="flex items-center justify-between mb-8">
             <span className="text-xs text-charcoal/60 font-sans">
-              Displaying all <strong className="text-navy">{projectsData.length}</strong> landmark projects
+              Displaying all <strong className="text-navy">{sortedProjects.length}</strong> landmark projects (Ongoing first)
             </span>
           </div>
 
           {/* Projects Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projectsData.map((project) => (
+            {sortedProjects.map((project) => (
               <div
                 key={project.slug}
                 className="group bg-white border border-gray-200/60 shadow-sm flex flex-col gap-4 p-4 hover:border-gold/25 hover:shadow-lg transition-all"
