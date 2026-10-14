@@ -131,8 +131,8 @@ export default function ContactPage() {
                   </div>
                   <div className="flex flex-col gap-1">
                     <span className="font-label text-[10px] tracking-wider uppercase text-charcoal/40 font-bold">Email Communications</span>
-                    <a href="mailto:info@vsgroupofcompanies.com" className="text-navy font-semibold hover:text-gold transition-colors">
-                      info@vsgroupofcompanies.com
+                    <a href="mailto:vasudevconstruction86@gmail.com" className="text-navy font-semibold hover:text-gold transition-colors">
+                      vasudevconstruction86@gmail.com
                     </a>
                   </div>
                 </li>
