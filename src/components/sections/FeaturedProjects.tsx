@@ -96,6 +96,10 @@ export default function FeaturedProjects() {
                   {project.description}
                 </p>
 
+                <div className="text-xs text-charcoal/80 font-sans bg-gray-50/90 py-2 px-3 border-l-2 border-gold rounded-none">
+                  <span className="font-semibold text-navy">Scope of work:</span> BBM, Plaster, Masonry, and Miscellaneous Development Work
+                </div>
+
                 <div className="pt-2 border-t border-gray-200/50 mt-2 flex items-center justify-between">
                   <span className="text-[10px] font-label text-charcoal/40 uppercase tracking-wider">
                     {project.details.area || "Premium Spans"}

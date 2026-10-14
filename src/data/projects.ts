@@ -267,7 +267,7 @@ export const projectsData: Project[] = [
     name: "Krisala 41 Zillenia",
     location: "Punawale",
     type: "residential",
-    status: "completed",
+    status: "ongoing",
     image: "/images/projects/Krisala 41 Zillenia.jpg",
     description: "Smartly sized urban apartments with multiple lifestyle options, crafted for next-gen home buyers.",
     longDescription: "Krisala 41 Zillenia in Punawale is designed to make optimal use of every square inch. Working closely with Krisala Developers, VS Group executed the high-speed concrete castings and brick masonry layout. Our strict quality control systems ensured that piping, electrical conduits, and masonry joints aligned perfectly to eliminate future repair needs.",
@@ -278,7 +278,7 @@ export const projectsData: Project[] = [
       bbmWork: "Autoclaved Aerated Blocks",
       plasterWork: "Gypsum Plaster finish, External Sand Faced plaster",
       turnkey: false,
-      completionYear: "2025",
+      completionYear: "2025 (Ongoing)",
       highlights: ["Smart Space-Saving Layouts", "Zero Plumbing Leaks System", "Comprehensive Club Area", "Rooftop Infinity Deck"]
     }
   },
@@ -287,7 +287,7 @@ export const projectsData: Project[] = [
     name: "The 4th Axis by Lifecraft",
     location: "Punawale",
     type: "commercial",
-    status: "completed",
+    status: "ongoing",
     image: "/images/projects/The 4th Axis by Lifecraft.jpg",
     description: "A state-of-the-art commercial and retail hub offering premium workspaces, high-street retail, and architectural grandeur.",
     longDescription: "The 4th Axis stands as a flagship commercial landmark in Punawale. Designed by Lifecraft Realty and constructed by VS Group, this project features massive clear-span commercial floors, custom structural steel framework integrations, and a grand multi-level atrium. Our engineering team successfully resolved complex post-tensioning requirements to deliver open-plan corporate workspaces that host premium brands and retail giants.",
@@ -298,7 +298,7 @@ export const projectsData: Project[] = [
       bbmWork: "Heavy-duty Solid Concrete BBM",
       plasterWork: "Internal Sand faced plaster with putty, External Structural Glass Curtain Walls",
       turnkey: true,
-      completionYear: "2024",
+      completionYear: "2025 (Ongoing)",
       highlights: ["Massive Clear-span Floor Plates", "Double-glazed Low-E Glass Facade", "Multi-level Automated Parking", "Dedicated Retail and Dining Zones"]
     }
   },
@@ -307,7 +307,7 @@ export const projectsData: Project[] = [
     name: "Namrata Vasudha",
     location: "Talegaon Dabhade",
     type: "residential",
-    status: "completed",
+    status: "ongoing",
     image: "/images/projects/Namrata Vasudha.jpg",
     description: "Serene low-rise hillside residential community celebrating nature, wellness and peaceful living.",
     longDescription: "Namrata Vasudha is a premium low-rise township nestled against the beautiful backdrop of Talegaon. The hilly terrain posed complex grading and foundation engineering challenges. VS Group designed step-foundations and retaining walls that conform to the natural contours of the land, preserving local ecology while ensuring absolute structural security and landslide prevention.",
@@ -318,7 +318,7 @@ export const projectsData: Project[] = [
       bbmWork: "Fly Ash eco-BBM work",
       plasterWork: "Internal Pop finish, External Damp-proof Sand-faced texture",
       turnkey: true,
-      completionYear: "2023",
+      completionYear: "2024 (Ongoing)",
       highlights: ["Hillside Step-Foundation Design", "High-spec Retaining Wall Drainage", "Damp-proof External Coatings", "Wellness & Yoga Gardens"]
     }
   },

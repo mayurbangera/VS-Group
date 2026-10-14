@@ -45,6 +45,7 @@ export default function LeadershipPage() {
                     alt={member.name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 35vw"
+                    style={{ objectPosition: member.imagePosition || "center center" }}
                     className="object-cover"
                     priority={idx === 0}
                   />
@@ -104,10 +105,10 @@ export default function LeadershipPage() {
                       )}
                       {idx === 2 && (
                         <>
-                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Client relations & management</li>
-                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Corporate finance & planning</li>
-                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Material procurement oversight</li>
-                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Project feasibility consulting</li>
+                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Structural design & engineering reviews</li>
+                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> On-site execution & quality audits</li>
+                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Technical specifications compliance</li>
+                          <li className="flex items-center gap-2"><Check className="w-4 h-4 text-gold shrink-0" /> Project feasibility & MEP integration</li>
                         </>
                       )}
                     </ul>

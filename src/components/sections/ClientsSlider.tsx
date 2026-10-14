@@ -10,6 +10,8 @@ export default function ClientsSlider() {
   const [isHovered, setIsHovered] = useState(false);
   const scrollSpeed = 0.8; // px per frame
   const animationFrameId = useRef<number | null>(null);
+  const isManualScrollingRef = useRef(false);
+  const manualTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Triple the items to ensure seamless infinite looping when scrolling
   const tripledClients = [...clientsData, ...clientsData, ...clientsData];
@@ -18,18 +20,26 @@ export default function ClientsSlider() {
     const container = containerRef.current;
     if (!container) return;
 
+    // Start with scroll position in the middle set to allow immediate left scrolling
+    if (container.scrollLeft === 0) {
+      const initialOffset = container.scrollWidth / 3;
+      container.scrollLeft = initialOffset;
+    }
+
     const performScroll = () => {
-      if (isHovered) {
+      if (isHovered || isManualScrollingRef.current) {
         animationFrameId.current = requestAnimationFrame(performScroll);
         return;
       }
 
       container.scrollLeft += scrollSpeed;
 
-      // Reset scroll position when reaching the end of the first set of items
-      const firstSetWidth = (container.scrollWidth / 3);
+      // Seamless wrap-around when reaching the end of the second set
+      const firstSetWidth = container.scrollWidth / 3;
       if (container.scrollLeft >= firstSetWidth * 2) {
         container.scrollLeft -= firstSetWidth;
+      } else if (container.scrollLeft <= 5) {
+        container.scrollLeft += firstSetWidth;
       }
 
       animationFrameId.current = requestAnimationFrame(performScroll);
@@ -41,6 +51,9 @@ export default function ClientsSlider() {
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
+      if (manualTimeoutRef.current) {
+        clearTimeout(manualTimeoutRef.current);
+      }
     };
   }, [isHovered]);
 
@@ -48,12 +61,30 @@ export default function ClientsSlider() {
     const container = containerRef.current;
     if (!container) return;
 
-    const scrollAmount = 300;
-    if (direction === "left") {
-      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    } else {
-      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    isManualScrollingRef.current = true;
+    if (manualTimeoutRef.current) {
+      clearTimeout(manualTimeoutRef.current);
     }
+
+    const firstSetWidth = container.scrollWidth / 3;
+    const scrollStep = 320;
+
+    if (direction === "left") {
+      if (container.scrollLeft <= scrollStep) {
+        container.scrollLeft += firstSetWidth;
+      }
+      container.scrollBy({ left: -scrollStep, behavior: "smooth" });
+    } else {
+      if (container.scrollLeft >= firstSetWidth * 2 - scrollStep) {
+        container.scrollLeft -= firstSetWidth;
+      }
+      container.scrollBy({ left: scrollStep, behavior: "smooth" });
+    }
+
+    // Resume auto-scroll after smooth scroll animation settles
+    manualTimeoutRef.current = setTimeout(() => {
+      isManualScrollingRef.current = false;
+    }, 1000);
   };
 
   return (
@@ -78,15 +109,17 @@ export default function ClientsSlider() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleManualScroll("left")}
-              className="p-2 border border-gray-200 hover:border-gold hover:text-gold text-navy transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+              className="p-3 border border-gray-200 hover:border-gold hover:text-gold text-navy transition-all duration-300 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold active:scale-95"
               aria-label="Scroll clients left"
+              type="button"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => handleManualScroll("right")}
-              className="p-2 border border-gray-200 hover:border-gold hover:text-gold text-navy transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+              className="p-3 border border-gray-200 hover:border-gold hover:text-gold text-navy transition-all duration-300 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold active:scale-95"
               aria-label="Scroll clients right"
+              type="button"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -98,13 +131,13 @@ export default function ClientsSlider() {
           ref={containerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex gap-12 overflow-x-auto scrollbar-hide py-4 items-center cursor-grab active:cursor-grabbing snap-x select-none"
+          className="flex gap-12 overflow-x-auto scrollbar-hide py-4 items-center cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {tripledClients.map((client, idx) => (
             <div
               key={`${client.name}-${idx}`}
-              className="flex-shrink-0 w-40 md:w-48 h-20 relative grayscale opacity-45 hover:grayscale-0 hover:opacity-100 transition-all duration-500 snap-center"
+              className="flex-shrink-0 w-40 md:w-48 h-20 relative grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
             >
               <Image
                 src={client.image}

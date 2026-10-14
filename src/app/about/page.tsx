@@ -128,6 +128,7 @@ export default function AboutPage() {
                     alt={member.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
+                    style={{ objectPosition: member.imagePosition || "center center" }}
                     className="object-cover transition-transform duration-500 group-hover:scale-103"
                   />
                 </div>
